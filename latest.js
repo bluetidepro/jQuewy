@@ -67,6 +67,14 @@ function jquewy(s){
 					i("http://code.jquewy.com/scripts/jquery.simplemodal-1.3.5.min.js"); 
 					return l + "Simple Modal";
 				break;
+				case "roundabout":
+					i("http://fredhq.com/assets/projects/roundabout/jquery.roundabout.min.js"); 
+					return l + "jQuery Roundabout";
+				break;
+				case "spritely":
+					i("http://www.spritely.net/releases/0.3/jquery.spritely-0.3b.js"); 
+					return l + "jQuery.spritely";
+				break;
 				default:
 					return 'The jQuery Plugin "' + s + '" is not available with jQuewy yet. Try using an absolute URL - $j("url");.';
 			}
