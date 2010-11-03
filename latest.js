@@ -75,6 +75,18 @@ function jquewy(s){
 					i("http://www.spritely.net/releases/0.3/jquery.spritely-0.3b.js"); 
 					return l + "jQuery.spritely";
 				break;
+				case "underscore":
+					i("http://documentcloud.github.com/underscore/underscore-min.js"); 
+					return l + "underscore.js";
+				break;
+				case "dojo":
+					i("http://ajax.googleapis.com/ajax/libs/dojo/1.5/dojo/dojo.xd.js"); 
+					return l + "Dojo";
+				break;
+				case "mootools":
+					i("http://mootools.net/download/get/mootools-core-1.3-full-nocompat-yc.js"); 
+					return l + "MooTools";
+				break;
 				default:
 					return 'The jQuery Plugin "' + s + '" is not available with jQuewy yet. Try using an absolute URL - $j("url");.';
 			}
