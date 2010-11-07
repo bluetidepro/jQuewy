@@ -1,4 +1,4 @@
-var jsonfile = 'http://dev.johnhamelink.com/jquery/jquewy/libs.php';
+var jsonfile = 'http://jquewy.com/libs.php';
 var data = null;
 
 
@@ -69,5 +69,15 @@ function $j(s){
 		}
 	}
 	
+}
+
+function $list(){
+	var return_string = "Available Libraries:\n";
+	for (var key in data) {
+		var name = key;
+		var url = data[key][0]['url'];
+		return_string += name + ",\n";
+	}
+	alert(return_string);
 }
 
