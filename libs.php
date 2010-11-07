@@ -6,6 +6,7 @@
 ?>
 ({
 	"libs": {
+		"jquery": [{"url": "https://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"}],
 		"lettering":[{"url": "http://github.com/davatron5000/Lettering.js/raw/master/jquery.lettering.js"}],
 		"easing":[{"url": "http://gsgd.co.uk/sandbox/jquery/easing/jquery.easing.1.3.js"}],
 		"backbone":[{"url": "http://documentcloud.github.com/backbone/backbone-min.js"}],
