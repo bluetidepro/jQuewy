@@ -1,102 +1,66 @@
 /* jQuewy 0.4 */
-
+var jsonfile = 'libs.php';
+var data = null;
 function i(p){ 
 	var i, src = p, scripts = document.getElementsByTagName("script"); 
 	for (i=0; i<scripts.length; i++){if (scripts[i].src.match(src)){ base = scripts[i].src.replace(src, "");break;}} 
 	document.write("<" + "script src=\"" + p + "\"></" + "script>"); 
 }
-i("http://code.jquery.com/jquery-1.4.3.min.js");
-function $j(s){
-	return jquewy(s);
+
+
+i("https://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js");
+//Based on http://bit.ly/aXk4D1
+function init(time_elapsed) {
+
+
+	// Continually polls to see if jQuery is loaded.
+	if (typeof $ == "undefined") { // if jQuery isn't loaded yet...
+		if (time_elapsed <= 5000) { // and we haven't given up trying...
+			setTimeout("init(" + (time_elapsed + 200) + ")", 200); // set a timer to check again in 200 ms.
+		}
+	} else {
+		//Asyncroniously calls for the json file and 
+		//loads all the libs into the data variable
+		$.ajax({
+			url: jsonfile+"?callback=?",
+			async: false,
+			dataType: 'json',
+			success: function (json) {
+				data = json['libs'];
+			}
+		});
+		return data;
+	}
 }
-function jquewy(s){
+
+function j(s){
 	if(s){
-		if(s.indexOf('http://')==-1){
-			var l = "Loaded ";
-			switch (s){
-				case "lettering":
-					i("http://github.com/davatron5000/Lettering.js/raw/master/jquery.lettering.js");
-					return l + "LetteringJS";
-				break;
-				case "easing":
-					i("http://gsgd.co.uk/sandbox/jquery/easing/jquery.easing.1.3.js");
-					return l + "Easing";
-				break;
-				case "backbone":
-					i("http://documentcloud.github.com/backbone/backbone-min.js");
-					return l + "BackboneJS";
-				break;
-				case "alphanumeric":
-					i("http://www.itgroup.com.ph/alphanumeric/jquery.alphanumeric.pack.js");
-					return l + "jQuery AlphaNumeric";
-				break;
-				case "prototype":
-					i("http://prototypejs.org/assets/2009/8/31/prototype.js");
-					return l + "PrototypeJS";
-				break;
-				case "ui":
-					include("http://code.jquewy.com/scripts/ui/ui.js");
-					document.write("<" + "link rel='stylesheet' href=\"" + "http://code.jquewy.com/scripts/ui/style.css" + "\" /" + ">"); 
-					return l + "jQuery UI";
-				break;
-				case "tools":
-					i("http://cdn.jquerytools.org/1.2.5/jquery.tools.min.js"); 
-					return l + "jQuery Tools";
-				break;
-				case "float":
-					i("http://people.iola.dk/olau/flot/jquery.flot.js"); 
-					return l + "Flot";
-				break;
-				case "html5":
-					i("http://html5shim.googlecode.com/svn/trunk/html5.js"); 
-					return l + "HTML5shim";
-				break;
-				case "belatedpng":
-					i("http://html5shim.googlecode.com/svn/trunk/html5.js"); 
-					return l + "HTML5shim";
-				break;
-				case "hashchange":
-					i("http://github.com/cowboy/jquery-hashchange/raw/v1.3/jquery.ba-hashchange.min.js"); 
-					return l + "hashchange";
-				break;
-				case "simpleautogrow":
-					i("http://github.com/akaihola/jquery-simpleautogrow/raw/master/jquery.simpleautogrow.js"); 
-					return l + "SimpleAutoGrow";
-				break;
-				case "simplemodal":
-					i("http://code.jquewy.com/scripts/jquery.simplemodal-1.3.5.min.js"); 
-					return l + "Simple Modal";
-				break;
-				case "roundabout":
-					i("http://fredhq.com/assets/projects/roundabout/jquery.roundabout.min.js"); 
-					return l + "jQuery Roundabout";
-				break;
-				case "spritely":
-					i("http://www.spritely.net/releases/0.3/jquery.spritely-0.3b.js"); 
-					return l + "jQuery.spritely";
-				break;
-				case "underscore":
-					i("http://documentcloud.github.com/underscore/underscore-min.js"); 
-					return l + "underscore.js";
-				break;
-				case "dojo":
-					i("http://ajax.googleapis.com/ajax/libs/dojo/1.5/dojo/dojo.xd.js"); 
-					return l + "Dojo";
-				break;
-				case "mootools":
-					i("http://mootools.net/download/get/mootools-core-1.3-full-nocompat-yc.js"); 
-					return l + "MooTools";
-				break;
-				default:
-					return 'The jQuery Plugin "' + s + '" is not available with jQuewy yet. Try using an absolute URL - $j("url");.';
+		var data = init(0);
+		//multiple libraries support
+		if (s instanceof Array){
+			for (var n in s){
+				//For each available library
+				for (var key in data) {
+					var obj = data[key];
+					var name = key;
+					var url = obj[0]['url'];
+					if (s[n] == name){
+						i(url);
+					}
+				}
 			}
 		}
-		else{
-			include(s);
-			return l + s;
+		//For each available library
+		for (var key in data) {
+			var obj = data[key];
+			var name = key;
+			var url = obj[0]['url'];
+			if (s == name){
+				i(url);
+			}
 		}
 	}
 	else {
 		return "0.4";
 	}
-};
+}
