@@ -7,10 +7,25 @@ More specifically, jQuewy collects the latest libraries online, and automaticall
 
 ##Usage:
 
+	$j("jquery","ui","tools",function(){
+		// The scripts are ready to use
+	});
+
+or
+	$j(("jquery","ui","tools"),function(){
+		// The scripts are ready to use
+	});
+
+or
 	$j(["jquery","ui","tools"],function(){
 		// The scripts are ready to use
 	});
-	
+
+or
+	$j("jquery,ui,tools"],function(){
+		// The scripts are ready to use
+	});
+
 ## Supported libraries
 
 See the `libs.php` file, or add the following to the header, or in a firebug prompt:
