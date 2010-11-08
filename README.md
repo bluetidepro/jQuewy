@@ -14,7 +14,7 @@ More specifically, jQuewy collects the latest libraries online, and automaticall
 ## Supported libraries
 
 See the `libs.php` file, or add the following to the header, or in a firebug prompt:
-	jQuewy.list();
+	$j.list();
 
 ## More info, and contact
 Contact us at [http://jquewy.com/](http://jquewy.com/).
