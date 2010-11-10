@@ -38,6 +38,10 @@ jQuewy.extend(jQuewy, {
 			"tipsy":{
 				"url": "https://s3-eu-west-1.amazonaws.com/jquewyeu/jquery.tipsy.js",
 				"stylesheet": "https://s3-eu-west-1.amazonaws.com/jquewyeu/tipsy.css"
+			},
+			"nivo":{
+				"url": "https://s3-eu-west-1.amazonaws.com/jquewyeu/jquery.nivo.slider.pack.js",
+				"stylesheet": "https://s3-eu-west-1.amazonaws.com/jquewyeu/nivo-slider.css"
 			}
 		};
 		return s;
