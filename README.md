@@ -27,4 +27,5 @@ See the `libs.php` file, or add the following to the header, or in a firebug pro
 	$j.list();
 
 ## More info, and contact
+To find the version you are using, use $j();
 Contact us at [http://jquewy.com/](http://jquewy.com/).
