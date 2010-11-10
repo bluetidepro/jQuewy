@@ -21,7 +21,7 @@
  * THE SOFTWARE.
  * 
  */
-
+var version='0.4';
 (function(){
 function get_type(thing){
     if(thing===null)return "[object Null]"; // special case
@@ -30,43 +30,58 @@ function get_type(thing){
 	var jQuewy = function(){
 		var callback = null;
 		var lib_file = jQuewy.data();
-		
-		for (var i = 0; i < arguments.length; i++) {
-			
-			var arg = arguments[i];
-			
-			//Check that the parameter is not a local function, if it is,
-			//then call it and continue, else, check for other types.
-			if ((typeof arg == 'string') && (jQuewy.ifhttp(arg) !== false)){
-				continue;
-			}
-			// Check to see if the parameter is a callback function
-			else if (arg instanceof Function) {
-				callback = arg;
-				continue;
-			}
-			// Check to see if the parameter is a library
-			else if (typeof arg == 'string') {
-				lib = lib_file[arg.toLowerCase()];
-				if(lib){
-					jQuewy.addScript(lib.url);
-					if(lib.stylesheet){
-						jQuewy.addStylesheet(lib.stylesheet);
+		if (arguments.length > 0){
+			for (var i = 0; i < arguments.length; i++) {
+				
+				var arg = arguments[i];
+				
+				//Cut a delimited string into an array.
+				if ( (typeof arg == 'string') && ((arg.indexOf(',')!==-1) || (arg.indexOf(', ')!==-1)) ){
+					if (arg.indexOf(',')!==-1){
+						arg=arg.split(',');
+					} else {
+						arg=arg.split(', ');
 					}
-				} else throw 'jQuewy does not support ' + arg[i];
-				continue;
-			} else if (arg instanceof Array) {
-				for (var i = 0; i < arg.length; i++){
-					lib = lib_file[arg[i].toLowerCase()];
+				}
+				// Check to see if the parameter is a callback function
+				if (arg instanceof Function) {
+					
+					callback = arg;
+					continue;
+				}
+				// Check to see if the parameter is a library
+				else if (typeof arg == 'string') {
+					
+					
+					lib = lib_file[arg.toLowerCase()];
 					if(lib){
+						
 						jQuewy.addScript(lib.url);
 						if(lib.stylesheet){
 							jQuewy.addStylesheet(lib.stylesheet);
 						}
-					} else throw 'jQuewy does not support ' + arg[i];
+					} else if( jQuewy.ifhttp(arg) == false ){
+						console.log(arg);
+						throw 'jQuewy does not support ' + arg;
+					}
 					continue;
+				} else if (arg instanceof Array) {
+					for (var i = 0; i < arg.length; i++){
+						lib = lib_file[arg[i].toLowerCase()];
+						if(lib){
+							jQuewy.addScript(lib.url);
+							if(lib.stylesheet){
+								jQuewy.addStylesheet(lib.stylesheet);
+							}
+						} else if( jQuewy.ifhttp(arg[i]) == false ){
+							throw 'jQuewy does not support ' + arg[i];
+						}
+						continue;
+					}
 				}
 			}
+		} else {
+			return 'jQuewy '+version;
 		}
 		
 		jQuewy.addEvent(window,'load',callback);
@@ -78,7 +93,7 @@ function get_type(thing){
 	}
 
 	jQuewy.extend(jQuewy, {
-		libFile: "http://dev.johnhamelink.com/jquery/jquewy/libs.php",
+		libFile: "http://jquewy.com/libs.php",
 		data: false,
 		
 		addScript: function(src){
@@ -98,7 +113,7 @@ function get_type(thing){
 		},
 		
 		ifhttp: function(lib){
-			if(lib.indexOf('http://')==-1){
+			if(lib.indexOf('htt')==-1){
 				return false;
 			} else {
 				return jQuewy.addScript(lib);

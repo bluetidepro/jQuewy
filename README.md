@@ -10,19 +10,14 @@ More specifically, jQuewy collects the latest libraries online, and automaticall
 	$j("jquery","ui","tools",function(){
 		// The scripts are ready to use
 	});
-
-or
-	$j(("jquery","ui","tools"),function(){
-		// The scripts are ready to use
-	});
-
+	
 or
 	$j(["jquery","ui","tools"],function(){
 		// The scripts are ready to use
 	});
 
 or
-	$j("jquery,ui,tools"],function(){
+	$j("jquery,ui,tools",function(){
 		// The scripts are ready to use
 	});
 
