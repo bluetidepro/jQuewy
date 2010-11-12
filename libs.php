@@ -6,7 +6,7 @@
 jQuewy.extend(jQuewy, {
 	data: function(){
 		var s = {
-			"jquery": {"url": "https://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"},
+			"jquery": {"url": "http://code.jquery.com/jquery-1.4.4.min.js"},
 			"lettering":{"url": "https://s3-eu-west-1.amazonaws.com/jquewyeu/jquery.lettering.js"},
 			"easing":{"url": "https://s3-eu-west-1.amazonaws.com/jquewyeu/jquery.easing.1.3.js"},
 			"backbone":{"url": "https://s3-eu-west-1.amazonaws.com/jquewyeu/backbone-min.js"},
