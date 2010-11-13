@@ -24,17 +24,17 @@
 var version='0.4';
 (function(){
 function get_type(thing){
-    if(thing===null)return "[object Null]"; // special case
-    return Object.prototype.toString.call(thing);
+	if(thing===null)return "[object Null]"; // special case
+	return Object.prototype.toString.call(thing);
 }
 	var jQuewy = function(){
 		var callback = null;
 		var lib_file = jQuewy.data();
 		if (arguments.length > 0){
 			for (var i = 0; i < arguments.length; i++) {
-				
+
 				var arg = arguments[i];
-				
+
 				//Cut a delimited string into an array.
 				if ( (typeof arg == 'string') && ((arg.indexOf(',')!==-1) || (arg.indexOf(', ')!==-1)) ){
 					if (arg.indexOf(',')!==-1){
@@ -45,17 +45,17 @@ function get_type(thing){
 				}
 				// Check to see if the parameter is a callback function
 				if (arg instanceof Function) {
-					
+
 					callback = arg;
 					continue;
 				}
 				// Check to see if the parameter is a library
 				else if (typeof arg == 'string') {
-					
-					
+
+
 					lib = lib_file[arg.toLowerCase()];
 					if(lib){
-						
+
 						jQuewy.addScript(lib.url);
 						if(lib.stylesheet){
 							jQuewy.addStylesheet(lib.stylesheet);
@@ -83,10 +83,10 @@ function get_type(thing){
 		} else {
 			return 'jQuewy '+version;
 		}
-		
+
 		jQuewy.addEvent(window,'load',callback);
 	};
-	
+
 	jQuewy.extend = function(destination, source) { // Taken from Prototype
 		for (var property in source) destination[property] = source[property];
 		return destination;
@@ -95,15 +95,15 @@ function get_type(thing){
 	jQuewy.extend(jQuewy, {
 		libFile: "http://jquewy.com/libs.php",
 		data: false,
-		
+
 		addScript: function(src){
 			document.write('<'+'script type="text/javascript" src="' + src +'">'+'</'+'script>');	
 		},
-		
+
 		addStylesheet: function(href){
 			document.write('<link rel="stylesheet" type="text/css" href="' + href + '" />');
 		},
-		
+
 		jsonp: function(url, name, query){
 			url += (url.indexOf("?") > -1) ? "&callback="  : "?callback="
 			url += name + "&";
@@ -111,7 +111,7 @@ function get_type(thing){
 			url += new Date().getTime().toString(); // prevent caching   
 			jQuewy.addScript(url);
 		},
-		
+
 		ifhttp: function(lib){
 			if(lib.indexOf('htt')==-1){
 				return false;
@@ -119,25 +119,26 @@ function get_type(thing){
 				return jQuewy.addScript(lib);
 			}
 		},
-		
+
 		list: function(){
 			var return_string = "Available Libraries:\n",
-			    data = jQuewy.data();
+				data = jQuewy.data();
 			for (var key in data) {
 				return_string += key + ",\n";
 			}
 			var return_string = return_string.substring(0,return_string.length-2)+'.';
 			alert(return_string);
 		},
-		
+
 		addEvent: function(element, type, callback){
 			if(element.addEventListener) element.addEventListener(type, callback, false);
 			else if(element.attachEvent) element.attachEvent('on'+element, callback);
 		}
 	});
-	
+
 	jQuewy.jsonp(jQuewy.libFile);
-	
+
 	window.jQuewy = window.$j = jQuewy;
-	
+
 })();
+$j("jquery");
