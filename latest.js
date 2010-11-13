@@ -1,6 +1,6 @@
-/* jQuewy 0.4 by Jamie McElwain and John Hamelink.
+/* jQuewy 0.4.1 by The jQuewy Project
  * 
- * Copyright (c) 2010 Jamie McElwain and John Hamelink
+ * Copyright (c) 2010 The jQuewy Project
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,7 +21,7 @@
  * THE SOFTWARE.
  * 
  */
-var version='0.4';
+var version='0.4.1';
 (function(){
 function get_type(thing){
 	if(thing===null)return "[object Null]"; // special case
@@ -97,11 +97,17 @@ function get_type(thing){
 		data: false,
 
 		addScript: function(src){
-			document.write('<'+'script type="text/javascript" src="' + src +'">'+'</'+'script>');	
+			var s=document.createElement('script');
+			s.setAttribute('src',src);
+			document.getElementsByTagName('head')[0].appendChild(s);
 		},
 
 		addStylesheet: function(href){
-			document.write('<link rel="stylesheet" type="text/css" href="' + href + '" />');
+			var l=document.createElement('link');
+			l.setAttribute('rel','stylesheet');
+			l.setAttribute('type','text/css');
+			l.setAttribute('href',href);
+			document.getElementsByTagName('head')[0].appendChild(l);
 		},
 
 		jsonp: function(url, name, query){
