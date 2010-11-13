@@ -141,4 +141,3 @@ function get_type(thing){
 	window.jQuewy = window.$j = jQuewy;
 
 })();
-$j("jquery");
