@@ -23,10 +23,6 @@
  */
 var version='0.4.1';
 (function(){
-function get_type(thing){
-	if(thing===null)return "[object Null]"; // special case
-	return Object.prototype.toString.call(thing);
-}
 	var jQuewy = function(){
 		var callback = null;
 		var lib_file = jQuewy.data();
@@ -99,7 +95,11 @@ function get_type(thing){
 		addScript: function(src){
 			var s=document.createElement('script');
 			s.setAttribute('src',src);
-			document.getElementsByTagName('head')[0].appendChild(s);
+			try {
+				document.getElementsByTagName('head')[0].appendChild(s);
+			} catch (err) {
+				throw 'jQuewy cannot find the head tag: ' + err;
+			}
 		},
 
 		addStylesheet: function(href){
