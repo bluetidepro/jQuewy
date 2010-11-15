@@ -107,7 +107,11 @@ var version='0.4.1';
 			l.setAttribute('rel','stylesheet');
 			l.setAttribute('type','text/css');
 			l.setAttribute('href',href);
-			document.getElementsByTagName('head')[0].appendChild(l);
+			try {
+				document.getElementsByTagName('head')[0].appendChild(l);
+			} catch (err) {
+				throw 'jQuewy cannot find the head tag: ' + err;
+			}
 		},
 
 		jsonp: function(url, name, query){
