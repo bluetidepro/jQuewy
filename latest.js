@@ -89,7 +89,7 @@ var version='0.4.1';
 	}
 
 	jQuewy.extend(jQuewy, {
-		libFile: "http://jquewy.com/libs.php",
+		libFile: "http://jquewy.com/libs.php?dev=1",
 		data: false,
 
 		addScript: function(src){
@@ -144,8 +144,12 @@ var version='0.4.1';
 			if(element.addEventListener) element.addEventListener(type, callback, false);
 			else if(element.attachEvent) element.attachEvent('on'+element, callback);
 		}
+		
 	});
 
+	if(message){
+		throw message;
+	}
 	jQuewy.jsonp(jQuewy.libFile);
 
 	window.jQuewy = window.$j = jQuewy;
