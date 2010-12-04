@@ -147,9 +147,6 @@ var version='0.4.1';
 		
 	});
 
-	if(message){
-		throw message;
-	}
 	jQuewy.jsonp(jQuewy.libFile);
 
 	window.jQuewy = window.$j = jQuewy;
