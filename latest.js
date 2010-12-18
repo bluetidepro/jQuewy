@@ -25,7 +25,7 @@ var version='1.0';
 (function(){
 	var jQuewy = function(){
 		var callback = null;
-		var lib_file = jQuewy.data();
+		var lib_file;
 		if (arguments.length > 0){
 			for (var i = 0; i < arguments.length; i++) {
 
@@ -91,14 +91,13 @@ var version='1.0';
 	jQuewy.extend(jQuewy, {
 		libFile: "http://jquewy.com/libs.php?dev=1",
 		data: false,
-		error_message: 'jQuewy cannot find the head tag. jQuewy needs a head tag to embed scripts. ';
 		addScript: function(src){
 			var s=document.createElement('script');
 			s.setAttribute('src',src);
 			try {
 				document.getElementsByTagName('head')[0].appendChild(s);
 			} catch (err) {
-				throw error_message + err;
+				throw 'jQuewy cannot find the head tag. jQuewy needs a head tag to embed scripts. ' + err;
 			}
 		},
 		addStylesheet: function(href){
@@ -109,7 +108,7 @@ var version='1.0';
 			try {
 				document.getElementsByTagName('head')[0].appendChild(l);
 			} catch (err) {
-				throw error_message + err;
+				throw 'jQuewy cannot find the head tag. jQuewy needs a head tag to embed scripts. ' + err;
 			}
 		},
 
