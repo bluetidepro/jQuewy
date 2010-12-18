@@ -1,4 +1,4 @@
-/* jQuewy 0.4.1 by The jQuewy Project
+/* jQuewy 1.0 by The jQuewy Project
  * 
  * Copyright (c) 2010 The jQuewy Project
  * 
@@ -21,7 +21,7 @@
  * THE SOFTWARE.
  * 
  */
-var version='0.4.1';
+var version='1.0';
 (function(){
 	var jQuewy = function(){
 		var callback = null;
@@ -91,17 +91,16 @@ var version='0.4.1';
 	jQuewy.extend(jQuewy, {
 		libFile: "http://jquewy.com/libs.php?dev=1",
 		data: false,
-
+		error_message: 'jQuewy cannot find the head tag. jQuewy needs a head tag to embed scripts. ';
 		addScript: function(src){
 			var s=document.createElement('script');
 			s.setAttribute('src',src);
 			try {
 				document.getElementsByTagName('head')[0].appendChild(s);
 			} catch (err) {
-				throw 'jQuewy cannot find the head tag: ' + err;
+				throw error_message + err;
 			}
 		},
-
 		addStylesheet: function(href){
 			var l=document.createElement('link');
 			l.setAttribute('rel','stylesheet');
@@ -110,7 +109,7 @@ var version='0.4.1';
 			try {
 				document.getElementsByTagName('head')[0].appendChild(l);
 			} catch (err) {
-				throw 'jQuewy cannot find the head tag: ' + err;
+				throw error_message + err;
 			}
 		},
 
