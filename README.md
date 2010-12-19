@@ -1,4 +1,4 @@
-# jQuewy
+![jQuewy](http://jquewy.com/img/logo_small.png)
 
 ## What is jQuewy?
 
@@ -23,9 +23,9 @@ or
 
 ## Supported libraries
 
-See the `libs.php` file, or add the following to the header, or in a firebug prompt:
+Add the following to the header, or in a firebug prompt:
 	$j.list();
 
 ## More info, and contact
-To find the version you are using, use $j();
+To find the version you are using, use `$j();`
 Contact us at [http://jquewy.com/](http://jquewy.com/).
