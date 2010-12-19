@@ -1,4 +1,4 @@
-# jQuewy
+![jQuewy](http://jquewy.com/img/logo_small.png)
 
 ## What is jQuewy?
 
