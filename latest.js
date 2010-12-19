@@ -49,11 +49,9 @@ var version='0.5';
 				}
 				// Check to see if the parameter is a library
 				else if (typeof arg == 'string') {
-					var resources_arr = lib_file[arg.toLowerCase()].script;
-					if (jQuewy.ifhttp(arg[z]) == false){
-						for (var k = 0; k < resources_arr.length; k++) {
-							jQuewy.write( unescape(resources_arr[k]) );
-						}
+					var resources_arr = unescape(lib_file[arg.toLowerCase()].script);
+					if (jQuewy.ifhttp(arg) == false){
+							jQuewy.write( unescape(resources_arr) );
 					} else {
 						continue;
 					}
@@ -87,7 +85,7 @@ var version='0.5';
 	}
 
 	jQuewy.extend(jQuewy, {
-		libFile: "http://jquewy.com/dev/index.php",
+		libFile: "http://j.jquewy.com",
 		data: false,
 		
 		write: function(src){
@@ -124,8 +122,10 @@ var version='0.5';
 		},
 		
 		addEvent: function(element, type, callback){
-			if(element.addEventListener) element.addEventListener(type, callback, false);
-			else if(element.attachEvent) element.attachEvent('on'+element, callback);
+			if (callback !== null){
+				if(element.addEventListener) element.addEventListener(type, callback, false);
+				else if(element.attachEvent) element.attachEvent('on'+element, callback);
+			}
 		}
 	});
 	
