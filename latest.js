@@ -1,5 +1,4 @@
-
-/* jQuewy 1.0 by Jamie McElwain and John Hamelink.
+/* jQuewy 0.5 by Jamie McElwain and John Hamelink.
  * 
  * Copyright (c) 2010 Jamie McElwain and John Hamelink
  * 
@@ -22,7 +21,7 @@
  * THE SOFTWARE.
  * 
  */
-var version='1.0';
+var version='0.5';
 (function(){
 	var jQuewy = function(){
 		var callback = null;
