@@ -74,7 +74,7 @@ var version='0.5';
 				}
 			}
 		} else {
-			alert('jQuewy V'+version);
+			return "jQuewy " + version;
 		}
 		
 		jQuewy.addEvent(window,'load',callback);
