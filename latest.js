@@ -21,7 +21,7 @@
  * THE SOFTWARE.
  * 
  */
-var version='0.5';
+var version='0.6';
 (function(){
 	var jQuewy = function(){
 		var callback = null;
@@ -74,7 +74,7 @@ var version='0.5';
 				}
 			}
 		} else {
-			return "jQuewy " + version " (c) 2010 the jQuewy Project";
+			return "jQuewy " + version;
 		}
 		
 		jQuewy.addEvent(window,'load',callback);
@@ -122,8 +122,8 @@ var version='0.5';
 			alert(return_string);
 		},
 		
-		version: function(){
-			return version;
+		noConflict: function(namespace){
+				window.namespace = jQuewy;
 		},
 		
 		addEvent: function(element, type, callback){
